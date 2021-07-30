@@ -1,5 +1,5 @@
 import argparse
-import os
+import subprocess
 import smtplib
 from email.mime.multipart import MIMEMultipart 
 from email.mime.text import MIMEText  
@@ -63,5 +63,4 @@ if toaddr:
 if args.signal_number and args.receive_signalmessage:
 	#take care of signal
 	print(f"{args.signal_number}")
-	os.system(f"signal-cli -u {signal_registration_number} send -m " + "\"" + str(body) + "\"" +  f" {args.signal_number}")
-{"mode":"full","isActive":false}
+	subprocess.Popen(['signal-cli', '-u', signal_registration_number, 'send', '-m', str(body), args.signal_number])
